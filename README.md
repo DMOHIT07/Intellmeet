@@ -408,7 +408,7 @@ The following core features have been tested in the local development environmen
 https://github.com/DMOHIT07/Intellmeet
 
 **Live Application:**  
-Coming soon
+https://intellmeet-teal.vercel.app
 
 ---
 
