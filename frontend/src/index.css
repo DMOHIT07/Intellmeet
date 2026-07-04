@@ -1,0 +1,136 @@
+/* Global Reset & Base Styles — IntellMeet Dark Premium Theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  /* ── Dark Background System ── */
+  --bg-main: #0A0A0F;
+  --bg-surface: #111118;
+  --bg-surface-2: #16161E;
+  --bg-surface-3: #1C1C26;
+  --bg-card: rgba(22, 22, 30, 0.8);
+  --bg-glass: rgba(255, 255, 255, 0.04);
+
+  /* ── Text Hierarchy ── */
+  --text-primary: #F0F0FF;
+  --text-secondary: #A0A0C0;
+  --text-tertiary: #6060A0;
+  --text-muted: #40405A;
+
+  /* ── Vibrant Accent Palette ── */
+  --accent-purple: #7C3AED;
+  --accent-purple-light: #8B5CF6;
+  --accent-violet: #6D28D9;
+  --accent-indigo: #4F46E5;
+  --accent-cyan: #06B6D4;
+  --accent-pink: #EC4899;
+  --accent-emerald: #10B981;
+  --accent-amber: #F59E0B;
+
+  /* Primary action color */
+  --accent-primary: #7C3AED;
+  --accent-primary-hover: #6D28D9;
+  --accent-primary-glow: rgba(124, 58, 237, 0.35);
+
+  /* ── Gradient Definitions ── */
+  --gradient-primary: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+  --gradient-hero: linear-gradient(135deg, #1a0533 0%, #0c1445 50%, #050d2e 100%);
+  --gradient-card: linear-gradient(145deg, rgba(124, 58, 237, 0.08) 0%, rgba(79, 70, 229, 0.04) 100%);
+  --gradient-cyan: linear-gradient(135deg, #06B6D4 0%, #4F46E5 100%);
+
+  /* ── Status Colors ── */
+  --status-todo: #EF4444;
+  --status-progress: #F59E0B;
+  --status-done: #10B981;
+
+  --danger: #EF4444;
+  --danger-hover: #DC2626;
+  --danger-bg: rgba(239, 68, 68, 0.08);
+  --danger-border: rgba(239, 68, 68, 0.2);
+
+  --success: #10B981;
+  --success-bg: rgba(16, 185, 129, 0.08);
+  --success-border: rgba(16, 185, 129, 0.2);
+
+  /* ── Borders ── */
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.12);
+  --border-accent: rgba(124, 58, 237, 0.4);
+  --border-focus: rgba(124, 58, 237, 0.6);
+
+  /* ── Radius Grid ── */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-2xl: 36px;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+  --shadow-purple: 0 8px 32px rgba(124, 58, 237, 0.25);
+  --shadow-purple-lg: 0 20px 60px rgba(124, 58, 237, 0.3);
+  --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.2);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+button {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+input, textarea, select {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Ultra-Thin Modern Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.3);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.5);
+}
