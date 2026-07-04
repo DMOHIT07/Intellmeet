@@ -101,8 +101,7 @@ jobs:
     needs: ci   # Only run this job AFTER 'ci' job passes
 
     # Skip this job on pull requests — only deploy on direct pushes to main
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
-
+    if: false
     steps:
       # Step 1: Trigger Render to redeploy by calling the Deploy Hook URL
       # Render will pull the latest code from GitHub and restart the server
@@ -163,7 +162,7 @@ jobs:
     needs: ci   # Only run this job AFTER 'ci' job passes
 
     # Skip this job on pull requests — only deploy on direct pushes to main
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    if: false
 
     steps:
       # Step 1: Download the repository code
