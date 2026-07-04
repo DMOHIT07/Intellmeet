@@ -1,152 +1,448 @@
-# IntellMeet – AI-Powered Enterprise Meeting & Collaboration Platform
+# IntellMeet — AI-Powered Meeting & Collaboration Platform
 
-> **Production-Grade Full-Stack MERN Application with Real-Time Video, AI Meeting Intelligence & Team Collaboration**
+IntellMeet is a full-stack meeting and collaboration platform designed to help teams communicate, manage meetings, track tasks, and gain useful insights from their work.
 
-<!-- **Prepared For:** Zidio Development – Web Development (MERN) Domain  
-**Author:** Pavan Kumar  
-**Date:** March 2026  
-**Version:** 2.0 – Industry Edition -->
+The application combines secure authentication, Google Sign-In, real-time meeting features, team collaboration, task management, analytics, and AI-powered meeting intelligence in one platform.
 
 ---
 
-## 1. Project Overview
+## 👨‍💻 Project Information
 
-**Vision & Objectives**  
-Meetings are the biggest time killer in enterprises. IntellMeet transforms meetings into productive experiences with real-time video, AI-powered summaries, smart action item extraction, and seamless collaboration. The goal is to reduce meeting follow-up time by 40–60%.
-
-**Target Users & Use Cases**  
-*   **Enterprise Teams:** Remote and hybrid teams needing a unified platform for daily standups, sprint planning, and client calls.
-*   **Project Managers:** Automatically track meeting action items without manual note-taking.
-
-**Business Value Delivered**  
-*   Eliminates manual documentation via OpenAI-powered transcripts and summaries.
-*   Keeps teams accountable with integrated Task Management (Kanban).
-*   Centralizes communication, reducing tool fatigue.
-
-**Non-Functional Goals**  
-*   **Latency:** < 200 ms for real-time WebSocket events.
-*   **Security:** JWT Authentication, BCrypt password hashing, and Helmet/Rate-Limiting for OWASP mitigation.
-*   **Scalability:** Horizontal scaling support with Socket.io.
+**Developer:** Mohit Yadav  
+**Project:** IntellMeet  
+**Type:** Full-Stack MERN Application  
+**Frontend:** React + TypeScript + Vite  
+**Backend:** Node.js + Express  
+**Database:** MongoDB Atlas  
 
 ---
 
-## 2. Key Features
+## 🚀 Key Features
 
-| ID | Feature | Description | Acceptance Criteria |
-| :--- | :--- | :--- | :--- |
-| **F-01** | User Auth & Profiles | Secure signup/login with JWT, password hashing | Password hashing, stateless auth |
-| **F-02** | Real-Time Meetings | Video conferencing with screen sharing via WebRTC | Support multi-user rooms, low latency |
-| **F-03** | AI Intelligence | Automatic summary generation & action item extraction | Accurate summaries using OpenAI |
-| **F-04** | Real-Time Chat | In-meeting chat and real-time collaboration | Real-time sync across participants via Socket.io |
-| **F-05** | Dashboard & Tasks | Post-meeting dashboard, task creation and management | Actionable task list, status tracking |
-| **F-06** | Analytics Dashboard | Visual charts (bar/donut/progress) for meetings and tasks | SVG charts with no external chart library |
-| **F-07** | Meeting Access Control | Hosts restrict meetings to invited emails only | Public/restricted toggle, invited email list |
+### 🔐 Authentication
+
+- User registration
+- User login
+- Google Sign-In
+- JWT-based authentication
+- Secure password hashing
+- Protected API routes
+
+### 📹 Meeting Management
+
+- Create meetings
+- Join meeting rooms
+- Meeting access control
+- Public and restricted meetings
+- Invite participants
+- Guest lobby
+- Meeting history
+
+### 💬 Real-Time Collaboration
+
+- Real-time communication using Socket.io
+- Meeting rooms
+- Participant synchronization
+- In-meeting chat
+- WebRTC-based communication
+
+### 🤖 AI Meeting Intelligence
+
+- Meeting summaries
+- Action item extraction
+- Meeting insights
+- Transcript processing
+- AI service integration
+- Fallback support when an AI API key is unavailable
+
+### ✅ Task Management
+
+- Create tasks
+- Track task progress
+- Manage task status
+- Organize meeting action items
+- Team task collaboration
+
+### 📊 Analytics Dashboard
+
+- Meeting statistics
+- Task progress tracking
+- Meeting activity visualization
+- Status breakdown
+- Interactive dashboard insights
 
 ---
 
-## 3. Technology Stack
+## 🛠️ Technology Stack
 
-| Category | Technology | Rationale / Alternatives |
-| :--- | :--- | :--- |
-| **Frontend** | React 19 + TypeScript + Vite | Fast HMR, excellent developer experience |
-| **Server State** | TanStack React Query v5 | Automatic cache, background refetch, mutation invalidation |
-| **Client State** | Zustand | Lightweight auth/UI state (not used for server data) |
-| **Backend** | Node.js + Express | Fast, scalable event-driven architecture |
-| **Database** | MongoDB + Mongoose | Flexible NoSQL schema for unstructured meeting data |
-| **Real-Time** | Socket.io + WebRTC | Bidirectional real-time communication + P2P video |
-| **AI Integration** | OpenAI API (GPT-4o-mini) | Industry-leading text summarization; mock fallback when key absent |
-| **Security** | Helmet + Express Rate Limit | OWASP Top 10 mitigation |
-| **DevOps** | GitHub Actions + Docker Compose | Automated CI pipeline + local container stack |
+| Category | Technology |
+| --- | --- |
+| Frontend | React 19 |
+| Language | TypeScript |
+| Build Tool | Vite |
+| Backend | Node.js + Express |
+| Database | MongoDB Atlas |
+| ODM | Mongoose |
+| Authentication | JWT + Google OAuth |
+| Password Security | bcryptjs |
+| Real-Time Communication | Socket.io |
+| Video Communication | WebRTC |
+| Client State | Zustand |
+| Server State | TanStack React Query |
+| AI Integration | OpenAI API |
+| API Communication | Axios |
+| Security | Helmet + Express Rate Limit |
+| Deployment | Vercel + Cloud Backend Hosting |
+| Version Control | Git + GitHub |
 
 ---
 
-## 4. Architecture Overview
+## 🏗️ Project Architecture
 
 ```text
-[ Client (React + Vite) ]  <--->  [ Socket.io (Real-Time Chat) ]
-          |                                     |
-          v                                     v
-[ REST API (Express) ]     <--->  [ AI Service (OpenAI API) ]
-          |
-          v
-  [ MongoDB (Atlas) ]
+                         ┌──────────────────────┐
+                         │      User Browser    │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │   React + TypeScript │
+                         │       Frontend       │
+                         └──────────┬───────────┘
+                                    │
+                     REST API + Socket.io + WebRTC
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │  Node.js + Express   │
+                         │       Backend        │
+                         └───────┬───────┬──────┘
+                                 │       │
+                                 ▼       ▼
+                    ┌────────────────┐  ┌──────────────┐
+                    │ MongoDB Atlas  │  │  AI Service  │
+                    └────────────────┘  └──────────────┘
 ```
 
 ---
 
-## 5. Technical Highlights & Security
+## 📁 Project Structure
 
-*   **OWASP Mitigation:** Implemented `helmet` to secure Express apps by setting various HTTP headers.
-*   **Rate Limiting:** Added `express-rate-limit` to prevent brute-force attacks on the API.
-*   **Authentication:** Stateless JWT (JSON Web Tokens) with `bcryptjs` for secure password hashing.
-*   **Real-Time Data:** Utilized Socket.io rooms to segment meeting traffic, ensuring chat messages are only broadcast to users currently in that specific meeting room.
-*   **Code Simplicity & Educational Design:** Core logic functions (like transcript creation, statistics filtering, and socket relay handlers) have been rewritten to avoid complex/compound expressions, chained operations, or destructuring rest/spread patterns. These have been replaced with explicit variables, simple `for` loops, and exhaustive line-by-line explanations directly inside the source files.
+```text
+IntellMeet/
+│
+├── backend/
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   └── sockets/
+│   │
+│   ├── .env.example
+│   ├── package.json
+│   └── server.js
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── store/
+│   │
+│   ├── .env.example
+│   ├── package.json
+│   ├── vercel.json
+│   └── vite.config.ts
+│
+├── docs/
+├── .github/
+├── .gitignore
+├── DEPLOYMENT.md
+├── docker-compose.yml
+└── README.md
+```
 
 ---
 
-## 6. Setup & Installation (Local Development)
+## ⚙️ Local Installation
 
 ### Prerequisites
-*   Node.js (v18+)
-*   MongoDB running locally (`mongodb://localhost:27017/intellmeet`)
-*   OpenAI API Key (Optional — only needed for AI meeting summaries)
 
-### Step 1: Configure Backend Environment
-1. Navigate to the backend folder: `cd backend`
-2. Copy the example env file: `copy .env.example .env` (Windows) or `cp .env.example .env` (Mac/Linux)
-3. Edit `backend/.env` and set your values:
-   ```env
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/intellmeet
-   JWT_SECRET=replace_with_a_long_random_string
-   NODE_ENV=development
-   OPENAI_API_KEY=sk-...   # Optional
-   ```
-4. Install dependencies: `npm install`
-5. Start the server: `npm start` *(Runs on port 5000)*
+Install the following before running the project:
 
-### Step 2: Configure Frontend Environment
-1. Navigate to the frontend folder: `cd frontend`
-2. Copy the example env file: `copy .env.example .env.local` (Windows) or `cp .env.example .env.local` (Mac/Linux)
-3. For local development the default values work — no edits needed.
-   > For production deployment, set `VITE_API_URL` and `VITE_SOCKET_URL` to your deployed backend URL.
-4. Install dependencies: `npm install`
-5. Start the dev server: `npm run dev` *(Runs on port 5173)*
-
-Open `http://localhost:5173` in your browser to view the application.
+- Node.js 18 or newer
+- npm
+- Git
+- MongoDB Atlas account
+- Google Cloud account for Google Sign-In
 
 ---
 
-## 7. Key Features Added (Latest Updates)
+## 1️⃣ Clone the Repository
 
-| Feature | Description |
-| :--- | :--- |
-| **Meeting Access Control** | Hosts can restrict meetings to invited guests only via the ⋮ settings popover |
-| **Copy Link (Fallback)** | Meeting link copy works on both HTTP and HTTPS via clipboard + textarea fallback |
-| **Guest Lobby** | Unauthenticated users enter a name before joining; authenticated users skip directly in |
-| **Instant Join After Create** | Creating a meeting now navigates you directly into the room |
-| **WebRTC Name Relay** | Remote participant names and mute states now correctly sync across all peers |
-| **AI Insights Modal** | Completed meetings show AI summary, action items, and full chat transcript |
-| **Analytics Tab** | Visual SVG bar chart (meetings by day), donut chart (status breakdown), and task progress bar — built without any external chart library |
-| **Code Simplification** | Core business logic, charts filtering, and WebRTC events rewritten into explicit loops/variables with line-by-line comments |
+```bash
+git clone https://github.com/DMOHIT07/Intellmeet.git
+```
+
+Enter the project folder:
+
+```bash
+cd Intellmeet
+```
 
 ---
 
-## 8. Documentation
+## 2️⃣ Backend Setup
 
-Every file in the codebase has a dedicated beginner-friendly explanation in the [`docs/`](./docs/) folder.
+Enter the backend folder:
 
-| Quick Links | |
-| :--- | :--- |
-| 📖 [Full Documentation Index](./docs/00_INDEX.md) | Browse all 22 explanation documents |
-| 🚀 [Deployment Guide](./DEPLOYMENT.md) | Local, Docker & Cloud (Render + Vercel + Atlas) |
-| 🔒 [Auth Middleware](./docs/07_auth_middleware_explanation.md) | How JWT validation works |
-| 🧠 [AI Service](./docs/11_ai_service_explanation.md) | OpenAI integration + mock fallback |
-| 🔌 [Socket Signaling](./docs/12_meeting_socket_explanation.md) | WebRTC offer/answer relay |
-| 📹 [Meeting Room Page](./docs/22_meeting_room_page_explanation.md) | Complete WebRTC + Socket lifecycle |
-| 📊 [Analytics Component](./docs/21_analytics_explanation.md) | SVG charts + useMemo data processing |
-| 🗄️ [MongoDB Models](./docs/13_models_explanation.md) | User, Meeting, Task schemas explained |
+```bash
+cd backend
+```
 
-<!-- ## 7. Personal Reflection
+Install dependencies:
 
-Building IntellMeet was an incredible journey into full-stack engineering. The biggest challenge was perfectly syncing real-time state using Socket.io while maintaining a clean, decoupled architecture between the React frontend and Express backend. Implementing modern security practices (Helmet, Rate Limiting, JWT) provided hands-on experience with enterprise-grade application hardening. In the future, I plan to deploy this architecture using Docker and Kubernetes to fully realize the week-4 scalability goals. -->
+```bash
+npm install
+```
+
+Create a `.env` file inside the `backend` folder.
+
+Example:
+
+```env
+PORT=5050
+MONGO_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_secure_jwt_secret
+NODE_ENV=development
+OPENAI_API_KEY=your_openai_api_key
+```
+
+> Never upload the real `.env` file to GitHub.
+
+Start the backend:
+
+```bash
+npm run dev
+```
+
+The backend should run at:
+
+```text
+http://localhost:5050
+```
+
+A successful startup should show:
+
+```text
+MongoDB Connected
+Server running on http://localhost:5050
+```
+
+---
+
+## 3️⃣ Frontend Setup
+
+Open another terminal and enter the frontend folder:
+
+```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env` file inside the `frontend` folder.
+
+Example:
+
+```env
+VITE_API_URL=http://localhost:5050/api
+VITE_GOOGLE_CLIENT_ID=your_google_oauth_client_id
+```
+
+Start the frontend:
+
+```bash
+npm run dev
+```
+
+Open the URL displayed by Vite, usually:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## 🔑 Environment Variables
+
+### Backend
+
+| Variable | Description |
+| --- | --- |
+| `PORT` | Backend server port |
+| `MONGO_URI` | MongoDB Atlas connection string |
+| `JWT_SECRET` | Secret used to sign JWT tokens |
+| `NODE_ENV` | Application environment |
+| `OPENAI_API_KEY` | Optional AI integration key |
+
+### Frontend
+
+| Variable | Description |
+| --- | --- |
+| `VITE_API_URL` | Backend API URL |
+| `VITE_GOOGLE_CLIENT_ID` | Google OAuth Web Client ID |
+
+---
+
+## 🔐 Google Sign-In Setup
+
+To enable Google authentication:
+
+1. Create a project in Google Cloud Console.
+2. Configure the Google Auth Platform.
+3. Create an OAuth Client ID.
+4. Select **Web application**.
+5. Add the local frontend URL under Authorized JavaScript Origins:
+
+```text
+http://localhost:5173
+```
+
+6. Add the generated Client ID to:
+
+```env
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
+```
+
+Restart the frontend after changing environment variables.
+
+---
+
+## 🗄️ MongoDB Atlas Setup
+
+1. Create a MongoDB Atlas project.
+2. Create a database cluster.
+3. Create a database user.
+4. Add your current IP address under Network Access.
+5. Copy the MongoDB connection string.
+6. Add it to the backend `.env` file:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+```
+
+---
+
+## 🔒 Security Features
+
+IntellMeet includes:
+
+- JWT authentication
+- bcrypt password hashing
+- Google OAuth authentication
+- Protected backend routes
+- Helmet security headers
+- API rate limiting
+- Environment-based secret management
+- MongoDB Atlas access control
+
+Sensitive files such as `.env` are excluded from Git using `.gitignore`.
+
+---
+
+## 🌐 Deployment
+
+The application is designed for separate frontend and backend deployment.
+
+### Frontend
+
+The React frontend can be deployed using Vercel.
+
+### Backend
+
+The Node.js backend can be deployed using a compatible Node.js hosting platform.
+
+### Production Environment Variables
+
+For production, configure:
+
+```env
+VITE_API_URL=https://your-backend-url/api
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
+```
+
+The deployed frontend URL must also be added to the Google OAuth Authorized JavaScript Origins.
+
+---
+
+## 🧪 Features Tested
+
+The following core features have been tested in the local development environment:
+
+- MongoDB Atlas connection
+- User registration
+- User login
+- JWT authentication
+- Google Sign-In
+- Frontend and backend API connection
+- Dashboard functionality
+- Meeting features
+- Task management features
+
+---
+
+## 🔗 Project Links
+
+**GitHub Repository:**  
+https://github.com/DMOHIT07/Intellmeet
+
+**Live Application:**  
+Coming soon
+
+---
+
+## 🔮 Future Improvements
+
+Possible future enhancements include:
+
+- Improved multi-user video scalability
+- Advanced AI meeting summaries
+- Calendar integration
+- Email notifications
+- Meeting recordings
+- Cloud media storage
+- Mobile application support
+- Advanced team analytics
+- Production monitoring and logging
+
+---
+
+## 👨‍💻 Developer
+
+**Mohit Yadav**
+
+B.Tech Computer Science Graduate  
+Full-Stack Development | Cyber Security | AI & Machine Learning
+
+GitHub: https://github.com/DMOHIT07
+
+---
+
+## 📄 License
+
+This project is intended for educational, learning, and demonstration purposes.
+
+---
+
+⭐ If you find this project useful, consider giving the repository a star.
